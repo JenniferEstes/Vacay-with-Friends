@@ -1,4 +1,4 @@
 class Goal < ApplicationRecord
     belongs_to :user 
-    has_many :users, through :vacations
+    has_many :users, through: :vacations
 end

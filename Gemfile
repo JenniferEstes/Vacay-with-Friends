@@ -59,4 +59,8 @@ gem 'dotenv-rails'
 
 gem 'omniauth-google-oauth2'
 
-gem 'omniauth-rails-csrf_protection'
+gem 'omniauth-rails_csrf_protection', '~> 0.1.2'
+
+gem 'pry'
+
+

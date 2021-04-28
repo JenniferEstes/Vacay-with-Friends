@@ -17,11 +17,12 @@ class UsersController < ApplicationController
     end
 
     def show
-        @user = User.find(params[:id])
+        redirect_if_not_logged_in
+        @user = User.find_by_id(params[:id])
+        redirct_to root_path if !@user
     end
 
     private
-
     def user_params
         params.require(:user).permit(:email, :password, :group_name, :group_members)
     end

@@ -1,5 +1,17 @@
 class SessionsController < ApplicationController
 
+    # def home
+    # end
+
+    end
+    def destroy
+        session.clear
+        redirect_to root_path
+    end
+    
+    # def new
+    # end
+
     #to get email - request.env['omniauth.auth'][:info][:email]
     def omniauth
         @user = User.find_or_create_by(username: auth[:info][:username]) do |u|

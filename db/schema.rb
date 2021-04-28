@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_27_171105) do
+ActiveRecord::Schema.define(version: 2021_04_28_010430) do
 
   create_table "goals", force: :cascade do |t|
     t.decimal "amount"
@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 2021_04_27_171105) do
     t.string "uid"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "first_name"
   end
 
   create_table "vacations", force: :cascade do |t|

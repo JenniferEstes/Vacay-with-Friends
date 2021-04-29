@@ -9,7 +9,10 @@
     <tr>
       <td><%= v.date_traveling %></td>
       <td><%= v.description %></td>
-      <td><%= link_to "Edit", edit_user_vacation_path %></td>
+      <td><%= link_to "Edit", edit_user_vacation_path(@v.id) %></td>
+      <td><%= link_to 'Edit Vacation', edit_vacation_path(@v.id) %></td>
+
     </tr>
   <% end %>
 </table>
+

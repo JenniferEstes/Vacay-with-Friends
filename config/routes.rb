@@ -11,28 +11,14 @@ Rails.application.routes.draw do
   post '/login', to: 'sessions#create'
 
   delete '/logout', to: 'sessions#destroy'
-  #
-  # get '/vacations/:id', to: 'vacations#show'
-  # post '/vacations/:id', to: 'vacations#show'
-  #
-  # get '/vacations/:id/edit', to: 'vacations#edit'
-  # post '/vacations/:id/edit', to: 'vacations#edit'
-  #
-  # get '/vacations/:id/edit', to: 'vacations#create'
-  # post '/vacations/:id/edit', to: 'vacations#create'
-  #
-  # get '/goals', to: 'goals#index'
-  # post 'goals', to: 'goals#index'
-  # get '/goals/:id/edit', to: 'goals#edit'
+  get  '/logout', to: 'sessions#destroy'
 
-
-  # resources :users, only: [:new, :create, :show] 
 
   resources :users, only: [:new, :create, :show] do
     resources :vacations
   end
   resources :vacations do
-    resources :goals, only: [:edit]
+    resources :goals
   end
 
   get '/auth/google_oauth2/callback', to: 'sessions#omniauth'

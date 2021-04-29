@@ -2,14 +2,9 @@ class ApplicationController < ActionController::Base
 
 #Can use in views
 helper_method :current_user, :logged_in?
-
-    # def create
-    #     session[:email] = params[:email]
-    #     redirect_to '/'
-    # end
  
     def current_user
-        @current_user || User.find_by_id(session[:user_id]) if session[:user_id]
+        @current_user || User.find_by(id: session[:user_id]) if session[:user_id]
     end
 
     def logged_in?

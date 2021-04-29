@@ -1,3 +1,9 @@
-<h1><%= @user.group_name %> will be traveling on <%= @vacation.date_traveling%> to <%= @vacation.description! %> if they have the money!</h1>
+<!--<h1><%#= @user.group_name %> will be traveling on <%#= @vacation.date_traveling%> to <%#= @vacation.description! %> if they have the money!</h1>-->
 
-<h2>Group Savings Goal:</h2>
+<h2>Show Vacation:</h2>
+
+<%= @vacation.date_traveling %>
+<%= @vacation.description %>
+<%#= link_to "Edit", edit_user_vacation_path(@v.id) %>
+<%#= link_to 'Edit Vacation', edit_vacation_path(@v.id) %>
+<%#= button_to "Add to All Vacays" %>

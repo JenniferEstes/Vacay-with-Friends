@@ -5,14 +5,15 @@ class VacationsController < ApplicationController
     end
 
     def new
-        @vacation =  Vacation.new
+        @vacation = Vacation.new
     end
 
     def create
-        @vacation = current_user.vacation.build(vacation_params)
+        @vacation = current_user.vacations.build(vacation_params)
         if @vacation.save
-            redirect_to @vacations_path
+            redirect_to user_vacation_path
         else
+            flash[:message] = "Sorry, try again."
             render :new 
         end
     end

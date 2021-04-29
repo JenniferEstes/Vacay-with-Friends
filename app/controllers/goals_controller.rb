@@ -11,17 +11,20 @@ class GoalsController < ApplicationController
     def create
         @goal = current_user.goals.build(goal_params)
         if @goal.save
-            redirect_to goals_path
+            redirect_to vacation_goals_path(@goal)
         else
-            render :new
-        end 
+            render :'/goals/new'
+        end
+    end
 
     def show
         @goal = Goal.find_by(id: params[:id])
-    end 
+    end
 
-    # def edit
-    #     end
+    def update
+        @goal.update(goal_params)
+        redirect_to goal_vacation_path(@goal)
+    end
 
     def update
         @goal.update(goal_params)
@@ -36,6 +39,6 @@ class GoalsController < ApplicationController
 
     private 
     def goal_params
-        params.require(:goal).permit(:amount, vacation_attributes:[:id, :location, :description, :date_traveled, :completed, :user_id, :goal_id])
+        params.require(:goal).permit(:amount, vacation_attributes:[:id, :description, :date_traveling, :user_id, :goal_id])
     end
 end

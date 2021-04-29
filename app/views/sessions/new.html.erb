@@ -1,10 +1,8 @@
 <h1>Log In</h1>
  
-<%= fash[:message] if flash[:message] %>
-<%# no instance variable because not updating instance %>
-<%= form_for :users do |f| %>
+<%= form_for :user do |f| %>
 <%= f.label :email %>
-<%= f.email_field :email %>
+<%= f.text_field :email %>
 <br>
 <%= f.label :password %>
 <%= f.password_field :password %>

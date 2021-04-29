@@ -1,17 +1,23 @@
 <h1>Sign up!</h1>
 
 <%= form_for(@user) do |f| %>
-<%= f.label :email %>
-<%= f.email_field :email %>
-<br>
-<%= f.label :password %>
-<%= f.password_field :password %>
-<br>
-<%= f.label :group_name %>
-<%= f.text_field :group_name %>
-<br>
-<%= f.label :group_members %>
-<%= f.number_field :group_members %>
-<br>
-<%= f.submit "Sign up" %>
+  <%= f.label :email %>
+  <%= f.email_field :email %>
+  <br>
+  <%= f.label :password %>
+  <%= f.password_field :password %>
+  <br>
+  <%= f.label :first_name %>
+  <%= f.text_field :first_name %>
+  <br>
+  <%= f.label :last_name %>
+  <%= f.text_field :last_name %>
+  <br>
+  <%= f.label :group_name %>
+  <%= f.text_field :group_name %>
+  <br>
+  <%= f.label :group_members %>
+  <%= f.number_field :group_members %>
+  <br>
+  <%= f.submit "Sign up" %>
 <% end %>

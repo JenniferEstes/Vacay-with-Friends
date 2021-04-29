@@ -1,34 +1,34 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<%# <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
     <a class="navbar-brand" <%= link_to "Vacay with Friends", root_path %></a>
-    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+    <%# <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
       <li class="nav-item active">
         <a class="nav-link" <%= link_to "Home", root_path %></a>
-      </li>
+      <%# </li>
       <li class="nav-item active">
        <a class="nav-link" <%= link_to "Sign in with Google", auth_google_oauth2_callback_pat, method: "post" %></a>
-      </li>
+      <%# </li>
       <% If logged_in? %>
-        <li class="nav-item active">
+        <%# <li class="nav-item active">
         <a class="nav-link" <%= link_to "View All", root_path %></a>
-      </li>
-      <li class="nav-item active">
+      <%# </li> %>
+      <%# <li class="nav-item active">
         <a class="nav-link" <%= link_to "Add Vacation", new_vacation_path %></a>
-      </li>
-      <% end %>
-    </ul>
-  </div> 
+      <%# </li>  %>
+      <%# <% end %>
+    <%# </ul> %>
+  <%# </div> %>
 <!--Log out far right on nav bar-->
-  <% if logged_in? %>
-    <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
+  <%# <% if logged_in? %> %>
+    <%# <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
       <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link" <%= link_to "Log Out", logout_path, method: "delete" %></a>
-        </li>
+        <li class="nav-item"> %>
+          <%# <a class="nav-link" <%= link_to "Log Out", logout_path %></a>
+        <%# </li>
       </ul>
-    </div>
-    <% end %>
-</nav>
+    </div> %>
+    <%# <% end %>
+<%# </nav> %>

@@ -1,24 +1,26 @@
 class SessionsController < ApplicationController
+    skip_before_action :verify_authenticity_token, only: :create
 
     # def home
     # end
 
     def destroy
         session.clear
-        redirect_to root_path
+        redirect_to login_path
     end
     
-    # def new
-    # end
+    def new
+        render :new
+    end
 
     def create
-        user = User.find_by_email(params[:user][:email])
-        if user && user.authenticate(params[:user][:password])
-            session[:user_id] = user.id
-            redirect_to user_path(user)
-        else 
-            flash[:message] = "Invalid login. Please try again."
-            redirect_to login_path
+        @user = User.find_by(email: params[:user][:email])
+        if @user && @user.authenticate(params[:user][:password])
+            session[:user_id] = @user.id
+            redirect_to user_path(@user)
+        else
+            flash[:message] = "Invalid information. Please try again."
+            render :new
         end
     end
 

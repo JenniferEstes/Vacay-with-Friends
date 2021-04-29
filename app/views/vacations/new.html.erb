@@ -1,6 +1,6 @@
-<h1> Create Vacation </h1>
+<h1> Add Vacation </h1>
 
-    <%= form_for(@vacation) do |f| %>
+    <%= form_for @vacation do |f| %>
 
         <%= f.label :date_traveling %>
         <%= f.text_field :date_traveling %>
@@ -8,7 +8,7 @@
          <%= f.label :description %>
         <%= f.text_field :description %>
 
-        <%= f.submit "create"  %>
+        <%= f.submit "Add Vacation"%>
         <% end %>
 
         

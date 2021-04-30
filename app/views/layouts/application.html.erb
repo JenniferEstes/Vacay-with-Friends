@@ -11,7 +11,12 @@
       <body>
       <%= render 'layouts/nav'%>
       <%= render 'layouts/bottom'%>
-      <%= render 'layouts/logout' if logged_in? %>
+      <%= render 'layouts/logout'%>
+      <div>
+        <p class="notice"><%= notice %></p>
+        <p class="alert"><%= alert %></p>
+      </div>
       <%= yield %>
+          <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
       </body>
   </html>

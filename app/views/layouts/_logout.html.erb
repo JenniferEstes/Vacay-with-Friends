@@ -1,7 +1,9 @@
-<div class="collapse navbar-collapse" id="navbarNavDropdown">
+<% if logged_in? %>
+  <div class="collapse navbar-collapse" id="navbarNavDropdown">
   <ul class="navbar-nav">
     <li class="nav-item">
       <a class="nav-link" <%= link_to "Log Out", logout_path %></a>
     </li>
   </ul>
 </div>
+<% end %>

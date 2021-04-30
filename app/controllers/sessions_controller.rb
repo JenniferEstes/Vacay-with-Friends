@@ -22,8 +22,7 @@ class SessionsController < ApplicationController
             session[:user_id] = user.id
             redirect_to user_path(user)
         else
-            flash[:message] = "Invalid information. Please try again."
-            redirect_to login_path
+            redirect_to login_path, notice: "Invalid information. Please try again."
         end
     end
 

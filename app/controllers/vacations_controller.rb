@@ -1,4 +1,5 @@
 class VacationsController < ApplicationController
+    before_action :redirect_if_not_logged_in
 
     def index
         @vacations = Vacation.all
@@ -11,7 +12,6 @@ class VacationsController < ApplicationController
     def create
         @vacation = current_user.vacations.build(vacation_params)
         if @vacation.save
-            binding.pry
             redirect_to vacations_path
         else
             flash[:message] = "Sorry, try again."

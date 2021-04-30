@@ -263,6 +263,7 @@ DEPENDENCIES
   dotenv-rails
   jbuilder (~> 2.7)
   listen (~> 3.3)
+  omniauth
   omniauth-google-oauth2
   omniauth-rails_csrf_protection
   pry

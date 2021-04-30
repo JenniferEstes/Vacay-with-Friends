@@ -1,7 +1,8 @@
 class SessionsController < ApplicationController
-    skip_before_action :verify_authenticity_token, only: :create
+    # skip_before_action :verify_authenticity_token, only: :create
 
     # def home
+    #     end
     # end
 
     def destroy
@@ -10,7 +11,9 @@ class SessionsController < ApplicationController
     end
     
     def new
-        render :new
+        if logged_in?
+            redirect user_path(@user)
+        end
     end
 
     def create
@@ -26,19 +29,16 @@ class SessionsController < ApplicationController
 
     #to get email - request.env['omniauth.auth'][:info][:email]
     def omniauth
-        @user = User.find_or_create_by(email: auth[:user][:email]) do |u|
+        user = User.find_or_create_by(uid: auth[:uid], provider: auth[:provider][:provider]) do |u|
             u.email = auth[:user][:email]
-            u.uid = auth[:uid]
-            u.provider = auth[:provider]
-            u.password = SecureRandom.hex(8)
+            u.password = SecureRandom.hex(15)
         end
-        if @user.valid?
-            #keep logged in
-            session[:user_id] = @user.id
+        if user.valid?
+            session[:user_id] = user.id
             redirect to user_path
-        else 
+        else
             flash[:message] = "Invalid input. Please try again."
-            redirct_to login_path
+            redirect_to login_path
         end
     end
 

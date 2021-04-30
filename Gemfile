@@ -60,6 +60,8 @@ gem 'dotenv-rails'
 
 gem 'omniauth-google-oauth2'
 
+gem 'omniauth'
+
 gem 'omniauth-rails_csrf_protection'
 
 gem 'bootstrap', '~> 5.0.0.beta3'

@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   delete '/logout', to: 'sessions#destroy'
   get  '/logout', to: 'sessions#destroy'
 
+  get 'auth/:provider/callback', to: 'sessions#omniauth'
 
   resources :users, only: [:new, :create, :show] do
     resources :vacations
@@ -20,8 +21,6 @@ Rails.application.routes.draw do
   resources :vacations do
     resources :goals
   end
-
-  get '/auth/google_oauth2/callback', to: 'sessions#omniauth'
 end
 
 # new index show

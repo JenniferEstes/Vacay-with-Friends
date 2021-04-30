@@ -23,9 +23,6 @@
                 <li class="nav-item active">
                   <a class="nav-link" <%= link_to "Log In", login_path %></a>
                 </li>
-                <li class="nav-item active">
-                  <a class="nav-link" <%= link_to "Log In with Google", auth_google_oauth2_callback_path, method: "post" %></a>
-                </li>
                 <% if logged_in? %>
                 <li class="nav-item active">
                   <a class="nav-link" <%= link_to "View All", root_path %></a>

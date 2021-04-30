@@ -8,5 +8,8 @@
 <%= f.password_field :password %>
 <br>
 <%= f.submit "Log In" %>
-
 <% end %>
+<br>
+<br>
+<h4>Log in with Google</h4>
+<%= button_to 'Log In', '/auth/google_oauth2' %>

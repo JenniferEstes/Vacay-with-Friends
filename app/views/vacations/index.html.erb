@@ -1,17 +1,22 @@
 <h1>All Vacations</h1>
 
+<% if @vacations.empty? %>
+  <h5>No Vacations planned yet. :(</h5>
+  <br>
+  <h5><%= link_to "Let's add one?", new_vacation_path %></h5>
+<% end %>
+
 <table class="vacation-table">
   <tr>
     <th>Date</th>
     <th>Vacation</th>
   </tr>
+
   <% @vacations.each do |v| %>
     <tr>
       <td><%= v.date_traveling %></td>
       <td><%= v.description %></td>
-      <td><%= link_to "Edit", edit_user_vacation_path(@v.id) %></td>
-      <td><%= link_to 'Edit Vacation', edit_vacation_path(@v.id) %></td>
-
+<!--      <td><%#= link_to 'Edit Vacation', edit_vacation_path(@v.id) %></td>-->
     </tr>
   <% end %>
 </table>

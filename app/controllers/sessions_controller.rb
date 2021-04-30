@@ -7,23 +7,23 @@ class SessionsController < ApplicationController
 
     def destroy
         session.clear
-        redirect_to login_path
+        redirect_to root_path
     end
     
     def new
         if logged_in?
-            redirect user_path(@user)
+            redirect user_path(user)
         end
     end
 
     def create
-        @user = User.find_by(email: params[:user][:email])
-        if @user && @user.authenticate(params[:user][:password])
-            session[:user_id] = @user.id
-            redirect_to user_path(@user)
+        user = User.find_by(email: params[:user][:email])
+        if user && @user.authenticate(params[:user][:password])
+            session[:user_id] = user.id
+            redirect_to user_path(user)
         else
             flash[:message] = "Invalid information. Please try again."
-            render :new
+            redirect_to login_path
         end
     end
 

@@ -11,11 +11,17 @@ class VacationsController < ApplicationController
     def create
         @vacation = current_user.vacations.build(vacation_params)
         if @vacation.save
-            redirect_to user_vacation_path
+            binding.pry
+            redirect_to vacations_path
         else
             flash[:message] = "Sorry, try again."
-            render :new 
+            redirect_to vacation_path
         end
+    end
+
+    def show
+        @vacation = Vacation.find_by_id(params[:id])
+        redirect_to root_path if !@user
     end
 
     private

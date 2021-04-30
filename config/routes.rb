@@ -11,16 +11,11 @@ Rails.application.routes.draw do
   post '/login', to: 'sessions#create'
 
   delete '/logout', to: 'sessions#destroy'
-  get  '/logout', to: 'sessions#destroy'
+  get '/logout', to: 'sessions#destroy'
 
   get 'auth/:provider/callback', to: 'sessions#omniauth'
 
-  resources :users, only: [:new, :create, :show] do
-    resources :vacations
+  resources :users
+  resources :vacations
+  resources :goals
   end
-  resources :vacations do
-    resources :goals
-  end
-end
-
-# new index show

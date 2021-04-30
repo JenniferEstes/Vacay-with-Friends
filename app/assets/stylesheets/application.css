@@ -1,4 +1,6 @@
- .page-bg{ 
-     /* background-image: url(<%= asset_path "../images/island.jpg" %>)  */
-     background-color: blueviolet;
-}
+
+/*body {*/
+/*background: {*/
+/*    image: asset_url("../images/island.jpg");*/
+/*}*/
+/*}*/UserController

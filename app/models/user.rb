@@ -1,6 +1,7 @@
 class User < ApplicationRecord
-    has_many :vacations, through: :goals
+    has_many :vacations, through: :groups
     has_many :goals
+    has_and_belongs_to_many :groups
 
     #gives password validation
     #gives reader and writer methods

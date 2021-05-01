@@ -1,7 +1,7 @@
 class Vacation < ApplicationRecord
 
   has_many :goals
-  has_many :users, through: :goals
+  has_many :users, through: :groups
 
   validates :description, presence: true
   validates :date_traveling, presence: true

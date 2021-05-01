@@ -23,9 +23,21 @@ class GroupsController < ApplicationController
     redirect_to root_path unless @group.users.include? current_user
   end
 
-  # def edit
-  # end
-  #
+  def edit
+    @group = Group.find_by_id(params[:id])
+    redirect_to root_path unless @group.users.include? current_user
+  end
+
+  def update
+    @group = Group.find_by_id(params[:id])
+    redirect_to root_path unless @group.users.include? current_user
+    if @group.update(group_params)
+      redirect_to groups_path(@group)
+    else
+      render :edit
+    end
+  end
+
    private
       def group_params
           params.require(:group).permit(:name)

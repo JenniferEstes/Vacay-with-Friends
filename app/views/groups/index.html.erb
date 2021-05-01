@@ -6,3 +6,13 @@
 <% end %>
 <h5><%= link_to "Add a group", new_group_path %></h5>
 
+<table class="group-table">
+  <tr>
+    <th>name</th>
+  </tr>
+  <% @groups.each do |g| %>
+    <tr>
+      <td><%= link_to g.name, group_path(g) %></td>
+    </tr>
+  <% end %>
+</table>

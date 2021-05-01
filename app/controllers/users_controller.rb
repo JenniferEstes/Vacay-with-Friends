@@ -22,7 +22,7 @@ class UsersController < ApplicationController
 
     def show
         @user = User.find_by_id(params[:id])
-        redirect_to root_path if !@user
+        redirect_to root_path if @user != current_user
     end
 
     private

@@ -1,0 +1,8 @@
+<h1>All Groups</h1>
+
+<% if @groups.empty? %>
+<h5> You are not in any groups. :(</h5>
+<br>
+<% end %>
+<h5><%= link_to "Add a group", new_group_path %></h5>
+

@@ -1,6 +1,6 @@
 class Goal < ApplicationRecord
-    belongs_to :vacations
-    has_many :users, through: :vacations
+    belongs_to :vacation
+    belongs_to :user
 
     validates :amount, presence: true
 end

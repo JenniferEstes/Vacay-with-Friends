@@ -1,0 +1,10 @@
+<h1> Add Goal </h1>
+
+<%= form_for(@goal) do |f| %>
+
+  <%= f.label :amount %>
+  <%= f.text_field :amount %>
+
+  <%= hidden_field :user_id, value: session[:user_id] %>
+  <%= f.submit "Add Goal" %>
+<% end %>

@@ -1,14 +1,22 @@
 class GroupsController < ApplicationController
   def index
-    @groups = Group.all
+    @groups = current_user.groups
   end
 
   def new
     @group = Group.new
   end
 
-  # def create
-  # end
+  def create
+    @group = current_user.groups.build(group_params)
+    if @group.save
+      @group.users << current_user
+      redirect_to groups_path
+    else
+      flash[:notice] = "Sorry, try again."
+      render :new
+    end
+  end
 
   def show
     @group = Group.find_by_id(params[:id])
@@ -19,7 +27,7 @@ class GroupsController < ApplicationController
   # end
   #
    private
-      def vacation_params
-          params.require(:group).permit(:name,)
+      def group_params
+          params.require(:group).permit(:name)
       end
 end

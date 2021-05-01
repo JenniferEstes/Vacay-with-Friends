@@ -10,12 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_28_010749) do
+ActiveRecord::Schema.define(version: 2021_05_01_025341) do
 
   create_table "goals", force: :cascade do |t|
     t.decimal "amount"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "vacation_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -35,13 +36,10 @@ ActiveRecord::Schema.define(version: 2021_04_28_010749) do
     t.string "description"
     t.date "date_traveling"
     t.integer "user_id", null: false
-    t.integer "goal_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["goal_id"], name: "index_vacations_on_goal_id"
     t.index ["user_id"], name: "index_vacations_on_user_id"
   end
 
-  add_foreign_key "vacations", "goals"
   add_foreign_key "vacations", "users"
 end

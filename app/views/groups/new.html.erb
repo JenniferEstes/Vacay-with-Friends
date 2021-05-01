@@ -1,0 +1,9 @@
+<h1> Add Group of Users</h1>
+
+<%= form_for(@group) do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+  <%= f.submit "Add Group" %>
+<% end %>
+
+<%#= hidden_field :user_id, value: session[:user_id] %>

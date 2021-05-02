@@ -58,12 +58,12 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'dotenv-rails'
 
-gem 'omniauth-google-oauth2'
+gem 'omniauth-github', github: 'omniauth/omniauth-github', branch: 'master'
 
 gem 'omniauth'
 
-gem 'omniauth-rails_csrf_protection'
+gem "omniauth-rails_csrf_protection", "~> 1.0"
 
 gem 'bootstrap', '~> 5.0.0.beta3'
 
-# gem 'devise'
+# gem 'devise', git: 'https://github.com/heartcombo/devise'

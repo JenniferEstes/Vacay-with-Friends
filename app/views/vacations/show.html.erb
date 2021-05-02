@@ -7,5 +7,5 @@
 
 <%= link_to 'Edit vacation', edit_group_vacation_path(@vacation.group, @vacation) %>
 <br>
-<%= link_to 'Goals', vacation_goals_path(@vacation) %>
-<%= button_to 'back', group_vacations_path(@vacation.group), method: :get %>
+<%= link_to 'Add Goals', vacation_goals_path(@vacation) %>
+<%= button_to 'Back to Vacations', group_vacations_path(@vacation.group), method: :get %>

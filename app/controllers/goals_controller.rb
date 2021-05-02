@@ -34,10 +34,20 @@ class GoalsController < ApplicationController
         redirect_to root_path unless @goal.vacation.group.users.include? current_user
     end
 
-    def update
+    def edit
         @goal = Goal.find_by_id(params[:id])
         redirect_to root_path unless @goal.vacation.group.users.include? current_user
+    end
+
+    def update
+        @goal = Goal.find_by_id(params[:id])
+        redirect_to root_path unless @goal.user == current_user
+        if @goal.update(goal_params)
+            redirect_to vacation_goals_path(@goal.vacation)
+        else
+            flash[:alert] = "Your goal must be a number."
             render :edit
+        end
     end
 
     def destroy

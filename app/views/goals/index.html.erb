@@ -1,13 +1,24 @@
-<!--<h1>All Goals</h1>-->
+<h1>All Goals</h1>
 
-<!--<table class="goal-table">-->
-<!--  <tr>-->
-<!--    <th>Amount</th>-->
-<!--  </tr>-->
-  <%# current_user.goals.each do |g| %>
-<!--    <tr>-->
-<!--      <td><%#= g.amount %></td>-->
-<!--      <td><%#= link_to "Edit", edit_vacation_goal_path %></td>-->
-<!--    </tr>-->
-  <%# end %>
-<!--</table>-->
+<% if @goals.empty? %>
+  <h5>No goals planned yet. :(</h5>
+<% end %>
+
+<br>
+
+  <h5><%= link_to 'Add Goal', new_vacation_goal_path(@vacation) %></h5>
+
+  <table class="goal-table">
+    <tr>
+      <% if @goals.present? %>
+    <th>Amount</th>
+        <% end %>
+    </tr>
+    <% @goals.each do |g| %>
+      <tr>
+        <td><%= g.amount %></td>
+        <br>
+        <td><%= link_to 'Edit', edit_vacation_goal_path %></td>
+      </tr>
+      </table>
+<% end %>

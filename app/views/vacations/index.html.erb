@@ -8,11 +8,12 @@
 
 <table class="vacation-table">
   <tr>
-    <th>description</th>
     <th>Date</th>
+    <th>Description</th>
   </tr>
   <% @vacations.each do |v| %>
     <tr>
+      <td><%= v.date_traveling %></td>
       <td><%= link_to v.description, group_vacation_path(v.group, v) %></td>
     </tr>
   <% end %>

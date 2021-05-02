@@ -1,27 +1,44 @@
 class VacationsController < ApplicationController
     def index
-        @vacations = Vacation.all
-    end
-
-    def new
-        @vacation = Vacation.new
-    end
-
-    def create
-        @vacation = current_user.vacations.build(vacation_params)
-        if @vacation.save
-            redirect_to vacations_path
+        if params[:group_id] && @group = Group.find_by_id(params[:group_id])
+            redirect_to root_path unless @group.users.include? current_user
+            @vacations = Vacation.all
         else
-            flash[:notice] = "Sorry, try again."
-            render :new
+            flash[:notice] = "That group doesn't exist!"
+            redirect_to groups_path
         end
     end
 
-#     def show
-#         @vacation = Vacation.find_by_id(params[:id])
-#         redirect_to root_path if !@user
-#     end
-#
+    def new
+        if params[:group_id] && @group = Group.find_by_id(params[:group_id])
+            @vacation = Vacation.new
+        else
+            flash[:notice] = "That group doesn't exist!"
+            redirect_to groups_path
+        end
+    end
+
+    def create
+        if params[:group_id] && @group = Group.find_by_id(params[:group_id])
+            @vacation = @group.vacations.build(vacation_params)
+            if @vacation.save
+                redirect_to vacations_path
+            else
+                flash[:notice] = "Sorry, try again."
+                render :new
+            end
+        else
+            flash[:notice] = "That group doesn't exist!"
+            redirect_to groups_path
+        end
+    end
+
+    def show
+        @vacation = Vacation.find_by_id(params[:id])
+        redirect_to root_path unless @vacation.group.users.include? current_user
+    end
+
+
     private
     def vacation_params
         params.require(:vacation).permit(:date_traveling, :description)

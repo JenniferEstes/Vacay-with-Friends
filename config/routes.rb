@@ -17,9 +17,10 @@ Rails.application.routes.draw do
 
   resources :users
   resources :groups do
-    resources :vacations do
-      resources :goals
-    end
+    resources :vacations
+  end
+  resources :vacations do
+    resources :goals
   end
 
 end

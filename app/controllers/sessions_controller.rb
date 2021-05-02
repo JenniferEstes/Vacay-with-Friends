@@ -28,7 +28,7 @@ class SessionsController < ApplicationController
 
     #to get email - request.env['omniauth.auth'][:info][:email]
     def omniauth
-        user = User.find_or_create_by(uid: auth[:uid], provider: auth[:provider][:provider]) do |u|
+        user = User.find_or_create_by(uid: auth[:uid], provider: auth[:provider]) do |u|
             u.email = auth[:user][:email]
             u.password = SecureRandom.hex(15)
         end

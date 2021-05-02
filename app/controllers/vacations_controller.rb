@@ -49,6 +49,7 @@ class VacationsController < ApplicationController
         if @vacation.update(vacation_params)
             redirect_to group_vacations_path(@vacation.group)
         else
+            flash[:alert] = "You typed something incorrectly. Please try again."
             render :edit
         end
     end

@@ -4,6 +4,8 @@
 
 <%= @vacation.date_traveling %>
 <%= @vacation.description %>
-<%#= link_to "Edit", edit_user_vacation_path(@v.id) %>
-<%#= link_to 'Edit Vacation', edit_vacation_path(@v.id) %>
-<%#= button_to "Add to All Vacays" %>
+
+<%= @vacation.description %>
+<%= link_to 'Edit vacation', edit_group_vacation_path(@vacation.group, @vacation) %>
+<br>
+<%= link_to 'Goals', vacation_goals_path(@vacation) %>

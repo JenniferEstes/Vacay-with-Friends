@@ -1,0 +1,8 @@
+<h2>Show Goal</h2>
+
+<%= @goal.amount %>
+
+<%= link_to 'Edit goal', edit_group_vacation_path(@goal.vacation.group, @goal.vacation) %>
+<br>
+<%= link_to 'Goals', edit_vacation_goal_path(@goal) %>
+<%= button_to 'back', vacation_goals_path(@goal.vacation), method: :get %>

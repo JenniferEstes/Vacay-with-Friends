@@ -1,13 +1,5 @@
 <h1>All Goals</h1>
 
-<% if @goals.empty? %>
-  <h5>No goals planned yet. :(</h5>
-<% end %>
-
-<br>
-
-  <h5><%= link_to 'Add Goal', new_vacation_goal_path(@vacation) %></h5>
-
   <table class="goal-table">
     <tr>
       <% if @goals.present? %>
@@ -16,9 +8,15 @@
     </tr>
     <% @goals.each do |g| %>
       <tr>
-        <td><%= g.amount %></td>
-        <br>
-        <td><%= link_to 'Edit', edit_vacation_goal_path %></td>
+        <td><%= link_to g.amount, vacation_goal_path(g.amount, g) %></td>
       </tr>
       </table>
 <% end %>
+
+    <% if @goals.empty? %>
+      <h5>No goals planned yet. :(</h5>
+    <% end %>
+    <br>
+    <br>
+    <h5><%= link_to 'Add Goal', new_vacation_goal_path(@vacation) %></h5>
+    <h5><%= button_to 'Back to Vacations', group_vacations_path(@vacation.group), method: :get %><h5>

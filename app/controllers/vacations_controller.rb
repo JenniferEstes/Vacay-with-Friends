@@ -2,7 +2,7 @@ class VacationsController < ApplicationController
     def index
         if params[:group_id] && @group = Group.find_by_id(params[:group_id])
             redirect_to root_path unless @group.users.include? current_user
-            @vacations = Vacation.all
+            @vacations = @group.vacations
         else
             flash[:notice] = "That group doesn't exist!"
             redirect_to groups_path
@@ -36,6 +36,21 @@ class VacationsController < ApplicationController
     def show
         @vacation = Vacation.find_by_id(params[:id])
         redirect_to root_path unless @vacation.group.users.include? current_user
+    end
+
+    def edit
+        @vacation = Vacation.find_by_id(params[:id])
+        redirect_to root_path unless @vacation.group.users.include? current_user
+    end
+
+    def update
+        @vacation = Vacation.find_by_id(params[:id])
+        redirect_to root_path unless @vacation.group.users.include? current_user
+        if @vacation.update(vacation_params)
+            redirect_to group_vacations_path(@vacation.group)
+        else
+            render :edit
+        end
     end
 
 

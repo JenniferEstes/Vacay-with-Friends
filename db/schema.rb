@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_01_203836) do
+ActiveRecord::Schema.define(version: 2021_05_01_232535) do
 
   create_table "goals", force: :cascade do |t|
     t.decimal "amount"
@@ -48,11 +48,9 @@ ActiveRecord::Schema.define(version: 2021_05_01_203836) do
   create_table "vacations", force: :cascade do |t|
     t.string "description"
     t.date "date_traveling"
-    t.integer "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id"], name: "index_vacations_on_user_id"
+    t.string "group_id"
   end
 
-  add_foreign_key "vacations", "users"
 end

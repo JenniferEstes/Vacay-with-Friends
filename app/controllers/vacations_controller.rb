@@ -22,7 +22,7 @@ class VacationsController < ApplicationController
         if params[:group_id] && @group = Group.find_by_id(params[:group_id])
             @vacation = @group.vacations.build(vacation_params)
             if @vacation.save
-                redirect_to vacations_path
+                redirect_to group_vacation_path(@group, @vacation)
             else
                 flash[:notice] = "Sorry, try again."
                 render :new

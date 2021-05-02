@@ -3,5 +3,17 @@
 <% if @vacations.empty? %>
   <h5>No Vacations planned yet. :(</h5>
   <br>
-  <h5><%= link_to 'Add Group', new_group_path %></h5>
 <% end %>
+<h5><%= link_to 'Add Vacation', new_group_vacation_path(@group) %></h5>
+
+<table class="vacation-table">
+  <tr>
+    <th>description</th>
+    <th>Date</th>
+  </tr>
+  <% @vacations.each do |v| %>
+    <tr>
+      <td><%= link_to v.description, group_vacation_path(v.group, v) %></td>
+    </tr>
+  <% end %>
+</table>

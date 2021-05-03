@@ -1,7 +1,7 @@
 class VacationsController < ApplicationController
     def index
         if params[:group_id] && @group = Group.find_by_id(params[:group_id])
-            redirect_to root_path unless @group.users.include? current_user
+            redirect_if_not_authorized(group)
             @vacations = @group.vacations
         else
             flash[:notice] = "That group doesn't exist!"
@@ -58,5 +58,9 @@ class VacationsController < ApplicationController
     private
     def vacation_params
         params.require(:vacation).permit(:date_traveling, :description)
+    end
+
+    def redirect_if_not_authorized(group)
+        redirect_to root_path unless group.users.include? current_user
     end
 end

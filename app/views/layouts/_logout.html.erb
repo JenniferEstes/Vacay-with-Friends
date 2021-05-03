@@ -1,9 +1,9 @@
-<%# if logged_in? %>
-<!--  <div class="collapse navbar-collapse" id="navbarNavDropdown">-->
-<!--  <ul class="navbar-nav">-->
-<!--    <li class="nav-item">-->
-<!--      <a class="nav-link" <%#= link_to "Log Out", logout_path, method: "post" %></a>-->
-<!--    </li>-->
-<!--  </ul>-->
-<!--</div>-->
-<%# end %>
+<% if logged_in? %>
+  <div class="collapse navbar-collapse style="background-color: light">
+  <ul class="navbar-nav mr-auto">
+    <li class="nav-item active">
+      <a class="nav-link" <%= link_to "Log Out", logout_path, method: "post" %></a>
+    </li>
+  </ul>
+</div>
+<% end %>

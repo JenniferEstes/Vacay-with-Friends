@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-dark navbar" style="background-color: light">
   <div class="container-fluid">
     <a class="navbar-brand" <%= link_to "Vacay with Friends", root_path %></a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -6,33 +6,24 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
       <ul class="navbar-nav">
-          <% if !!logged_in? %>
+        <% if logged_in? %>
         <li class="nav-item">
           <a class="nav-link"<%= link_to "Sign Up", signup_path %></a>
         </li>
-        <% else %>
-          <li class="nav-item">
-            <a class="nav-link" aria-current="page"<%= link_to "Home", root_path %></a>
-          </li>
           <li class="nav-item">
             <a class="nav-link"<%= link_to "Log In", login_path %></a>
           </li>
-          <li>
-            <a class="nav-link" <%= link_to "Log Out", logout_path, method: "post" %></a>
+        <% else %>
+          <li class="nav-item">
+            <a class="nav-link"<%= link_to "Home", root_path %></a>
           </li>
+        <% end %>
+        <% if !logged_in? %>
+<!--          <li>-->
+<!--            <a class="nav-link" <%#= link_to "Log Out", logout_path, method: "post" %></a>-->
+<!--          </li>-->
       <% end %>
-<!--        <li class="nav-item">-->
-<!--          <a class="nav-link"<%#= link_to "View All", user_vacations_path %></a>-->
-<!--        </li>-->
       </ul>
     </div>
   </div>
-<!--  Log out far right-->
 </nav>
-
-
-<%#=
-<!--  link_to_if(@current_user.nil?, "Login", { controller: "sessions", action: "new" }) do-->
-<!--    link_to(@current_user.login, { controller: "accounts", action: "show", id: @current_user })-->
-<!--  end-->
-%>

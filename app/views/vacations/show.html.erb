@@ -5,7 +5,7 @@
 <%= @vacation.date_traveling %>
 <%= @vacation.description %>
 
-<%= link_to 'Edit vacation', edit_group_vacation_path(@vacation.group, @vacation) %>
+<%= button_to 'Edit', edit_group_vacation_path(@vacation.group, @vacation), method: :get %>
 <br>
-<%= link_to 'Add Goals', vacation_goals_path(@vacation) %>
+<%= button_to 'Add Goal', vacation_goals_path(@vacation), method: :get %>
 <%= button_to 'Back to Vacations', group_vacations_path(@vacation.group), method: :get %>

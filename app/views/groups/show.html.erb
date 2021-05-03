@@ -1,6 +1,6 @@
 <h2>Show Group:</h2>
 
 <%= @group.name %>
-<%= link_to 'Edit Group', edit_group_path(@group) %>
+<%= button_to 'Edit Group', edit_group_path(@group), method: "get" %>
 <br>
-<%= link_to 'Vacations', group_vacations_path(@group) %>
+<%= button_to 'Vacations', group_vacations_path(@group), method: "get" %>

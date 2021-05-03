@@ -8,5 +8,8 @@
   <%= f.label :description %>
   <%= f.text_field :description %>
 
-  <%= f.submit "Add Vacation" %>
+  <%= f.submit "Submit" %>
 <% end %>
+
+<br>
+<%= button_to 'Back to Vacations', group_vacations_path, method: "get" %>

@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
     
     def new
         if logged_in?
-            redirect user_path(user)
+            redirect_to user_path(current_user)
         end
     end
 
@@ -23,8 +23,8 @@ class SessionsController < ApplicationController
             session[:user_id] = @user.id
             redirect_to user_path(@user)
         else
-            @user = User.find_by(uid: params[:user][:uid])
-            if @user && @user.authenticate(password: params[:user][:password])
+            @user = User.find_by(email: params[:user][:email])
+            if @user && @user.authenticate(params[:user][:password])
                 session[:user_id] = @user.id
                 redirect_to user_path(@user)
             else

@@ -52,7 +52,7 @@ ActiveRecord::Schema.define(version: 2021_05_02_053328) do
     t.date "date_traveling"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "group_id"
+    t.integer "group_id"
   end
 
   add_foreign_key "goals", "users"

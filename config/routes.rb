@@ -9,11 +9,12 @@ Rails.application.routes.draw do
 
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
+  get 'auth/github', as: 'github_login'
+  get '/auth/:provider/callback', to: 'sessions#create'
 
   delete '/logout', to: 'sessions#destroy'
   get '/logout', to: 'sessions#destroy'
 
-  get '/auth/:provider/callback' => 'sessions#create'
 
   # devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
 

@@ -1,25 +1,36 @@
-# README
+# Vacay with Friends
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Description
+This application was made as a project while attending Flatiron School using Ruby on Rails technology. It is a straightforward way to log expense amounts for while planning a vacation.<br/><br/>
 
-Things you may want to cover:
+## Usage
+View this [video](https://www.loom.com/share/e3ca0cd56d2d46f2b0a6805a5220c56d) for a brief description of how to use this application.
+<br/><br/>
 
-* Ruby version
+## Install Instructions
 
-* System dependencies
+### Execute in your terminal
+bundle install
+<br/>
 
-* Configuration
+rails s
+<br/>
 
-* Database creation
+### Copy from your terminal
+127.0.0.1:3000
+<br/>
 
-* Database initialization
+### Paste in your preferred browser
+127.0.0.1:3000
+<br/><br/>
 
-* How to run the test suite
+## Install Suggestion
+Use Google Chrome browser for best performance
+<br/><br/>
 
-* Services (job queues, cache servers, search engines, etc.)
+## Contributors Guide
+Consider this a safe place for collaboration. Bug reports and pull requests are welcomed. Contributors are expected to adhere to the [Contributor Covenant code of conduct](https://www.contributor-covenant.org/) for all interactions.
+<br/><br/>
 
-* Deployment instructions
-
-* ...
-# Vacay-with-Friends
+## License
+Available as open source under the terms of the [MIT License](https://github.com/JenniferEstes/Vacay-with-Friends/blob/26e3c0326bf9323f3c1d30c87a987c38167a7bd4/yarn.lock).

@@ -10,18 +10,15 @@ View this [video](https://www.loom.com/share/e3ca0cd56d2d46f2b0a6805a5220c56d) f
 ## Install Instructions
 
 ### Execute in your terminal
-bundle install
+
+                bundle install
 <br/>
 
-rails s
+                rails s
 <br/>
 
-### Copy from your terminal
-127.0.0.1:3000
-<br/>
-
-### Paste in your preferred browser
-127.0.0.1:3000
+### Copy from your terminal and paste in your preferred browser 
+                127.0.0.1:3000
 <br/><br/>
 
 ## Install Suggestion

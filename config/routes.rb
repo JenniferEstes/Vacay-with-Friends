@@ -15,15 +15,10 @@ Rails.application.routes.draw do
   delete '/logout', to: 'sessions#destroy'
   get '/logout', to: 'sessions#destroy'
 
-
-  # devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
-
-  resources :users
-  resources :groups do
-    resources :vacations
+  resources :users, only: [:new, :create, :show]
+  resources :groups, except: [:destroy] do
+    resources :vacations, except: [:destroy]
   end
-  resources :vacations do
+  resources :vacations, except: [:destroy] do
     resources :goals
-  end
-
 end

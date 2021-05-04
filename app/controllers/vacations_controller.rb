@@ -1,8 +1,8 @@
 class VacationsController < ApplicationController
     def index
         if params[:group_id] && @group = Group.find_by_id(params[:group_id])
-            redirect_if_not_authorized(group)
-            @vacations = @group.vacations
+            redirect_if_not_authorized(@group)
+            @vacations = Vacation.most_recent(@group)
         else
             flash[:notice] = "That group doesn't exist!"
             redirect_to groups_path

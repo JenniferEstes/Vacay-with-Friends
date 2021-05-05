@@ -3,4 +3,6 @@
 <%= @group.name %>
 <%= button_to 'Edit Group', edit_group_path(@group), method: "get" %>
 <br>
+<%= button_to 'Delete Group', group_path(@group), method: "delete" %>
+<br>
 <%= button_to 'Vacations', group_vacations_path(@group), method: "get" %>

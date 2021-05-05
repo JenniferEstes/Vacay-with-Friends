@@ -1,9 +1,12 @@
 class GroupsController < ApplicationController
   def index
+    redirect_if_not_logged_in
     @groups = current_user.groups
   end
 
   def new
+    redirect_if_not_logged_in
+    redirect_if_not_authorized
     @group = Group.new
   end
 
@@ -19,18 +22,20 @@ class GroupsController < ApplicationController
   end
 
   def show
-    @group = Group.find_by_id(params[:id])
-    redirect_to root_path unless @group.users.include? current_user
+    redirect_if_not_logged_in
+    redirect_if_not_authorized
+    find_group
   end
 
   def edit
-    @group = Group.find_by_id(params[:id])
-    redirect_to root_path unless @group.users.include? current_user
+    find_group
+    redirect_if_not_authorized
   end
 
   def update
-    @group = Group.find_by_id(params[:id])
-    redirect_to root_path unless @group.users.include? current_user
+    redirect_if_not_logged_in
+    redirect_if_not_authorized
+    find_group
     if @group.update(group_params)
       redirect_to groups_path(@group)
     else
@@ -39,13 +44,23 @@ class GroupsController < ApplicationController
   end
 
   def destroy
-    Group.find_by(id: params[:id]).destroy
+    redirect_if_not_logged_in
+    redirect_if_not_authorized
+    find_group.destroy
     flash[:notice] = "Group deleted."
     redirect_to groups_path
   end
 
   private
-      def group_params
-          params.require(:group).permit(:name)
-      end
+    def group_params
+      params.require(:group).permit(:name)
+    end
+
+  def redirect_if_not_authorized
+    redirect_to root_path unless @group.users.include? current_user
+  end
+
+  def find_group
+    @group = Group.find_by_id(params[:id])
+  end
 end

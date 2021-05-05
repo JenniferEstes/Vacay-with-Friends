@@ -46,6 +46,7 @@ class VacationsController < ApplicationController
     end
 
     def update
+        redirect_if_not_logged_in
         find_vacation
         redirect_if_not_authorized(group)
         if @vacation.update(vacation_params)

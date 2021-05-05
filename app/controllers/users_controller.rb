@@ -14,7 +14,6 @@ class UsersController < ApplicationController
             session[:user_id] = @user.id
             redirect_to user_path(@user)
         else
-            # @errors = @user.errors.full_messages
             flash[:alert] = "It looks like you entered incorrect infomration. Please try again."
             render :new 
         end
@@ -22,11 +21,11 @@ class UsersController < ApplicationController
 
     def show
         @user = User.find_by_id(params[:id])
-        redirect_to root_path if @user != current_user
+        redirect_if_not_logged_in
     end
 
     private
     def user_params
-        params.require(:user).permit(:email, :password, :first_name, :last_name, :group_name, :group_members)
+        params.require(:user).permit(:email, :password, :first_name, :last_name)
     end
 end

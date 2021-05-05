@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_02_053328) do
+ActiveRecord::Schema.define(version: 2021_05_05_035317) do
 
   create_table "goals", force: :cascade do |t|
     t.decimal "amount"
@@ -37,8 +37,6 @@ ActiveRecord::Schema.define(version: 2021_05_02_053328) do
   create_table "users", force: :cascade do |t|
     t.string "email"
     t.string "password_digest"
-    t.string "group_name"
-    t.integer "group_members"
     t.string "provider"
     t.string "uid"
     t.datetime "created_at", precision: 6, null: false

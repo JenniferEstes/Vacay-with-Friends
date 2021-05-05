@@ -1,7 +1,7 @@
 class VacationsController < ApplicationController
     def index
+        redirect_if_not_logged_in
         if params[:group_id] && @group = Group.find_by_id(params[:group_id])
-            redirect_if_not_authorized(@group)
             @vacations = Vacation.most_recent(@group)
         else
             flash[:notice] = "That group doesn't exist!"
@@ -10,6 +10,7 @@ class VacationsController < ApplicationController
     end
 
     def new
+        redirect_if_not_logged_in
         if params[:group_id] && @group = Group.find_by_id(params[:group_id])
             @vacation = Vacation.new
         else
@@ -34,18 +35,19 @@ class VacationsController < ApplicationController
     end
 
     def show
-        @vacation = Vacation.find_by_id(params[:id])
-        redirect_to root_path unless @vacation.group.users.include? current_user
+        redirect_if_not_logged_in
+        find_vacation
+        redirect_if_not_authorized(group)
     end
 
     def edit
-        @vacation = Vacation.find_by_id(params[:id])
-        redirect_to root_path unless @vacation.group.users.include? current_user
+        find_vacation
+        redirect_if_not_authorized(group)
     end
 
     def update
-        @vacation = Vacation.find_by_id(params[:id])
-        redirect_to root_path unless @vacation.group.users.include? current_user
+        find_vacation
+        redirect_if_not_authorized(group)
         if @vacation.update(vacation_params)
             redirect_to group_vacations_path(@vacation.group)
         else
@@ -57,10 +59,16 @@ class VacationsController < ApplicationController
 
     private
     def vacation_params
-        params.require(:vacation).permit(:date_traveling, :description)
+        params.require(:vacation).permit(:date_traveling, :description, :group_id)
     end
 
     def redirect_if_not_authorized(group)
         redirect_to root_path unless group.users.include? current_user
+    end
+
+    def find_vacation
+        @vacation = Vacation.find_by_id(params[:id])
+    end
+
     end
 end

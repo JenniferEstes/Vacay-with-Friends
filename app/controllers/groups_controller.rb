@@ -6,7 +6,6 @@ class GroupsController < ApplicationController
 
   def new
     redirect_if_not_logged_in
-    redirect_if_not_authorized
     @group = Group.new
   end
 

@@ -69,6 +69,4 @@ class VacationsController < ApplicationController
     def find_vacation
         @vacation = Vacation.find_by_id(params[:id])
     end
-
-    end
 end

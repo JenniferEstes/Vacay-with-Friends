@@ -13,6 +13,10 @@ class ApplicationController < ActionController::Base
   end
 
   def redirect_if_not_logged_in
-    redirect_to root_path if @user != current_user
+    redirect_to root_path unless logged_in?
+  end
+
+  def redirect_if_not_authorized(v)
+    redirect_to root_path unless v.users.include? current_user
   end
 end

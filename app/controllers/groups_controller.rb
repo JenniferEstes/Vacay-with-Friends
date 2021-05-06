@@ -1,6 +1,5 @@
 class GroupsController < ApplicationController
   def index
-    redirect_if_not_logged_in
     @groups = current_user.groups
   end
 
@@ -22,19 +21,20 @@ class GroupsController < ApplicationController
 
   def show
     redirect_if_not_logged_in
-    redirect_if_not_authorized
     find_group
+    redirect_if_not_authorized(@group)
   end
 
   def edit
+    redirect_if_not_logged_in
     find_group
-    redirect_if_not_authorized
+    redirect_if_not_authorized(@group)
   end
 
   def update
     redirect_if_not_logged_in
-    redirect_if_not_authorized
     find_group
+    redirect_if_not_authorized(@group)
     if @group.update(group_params)
       redirect_to groups_path(@group)
     else
@@ -44,8 +44,9 @@ class GroupsController < ApplicationController
 
   def destroy
     redirect_if_not_logged_in
-    redirect_if_not_authorized
-    find_group.destroy
+    find_group
+    redirect_if_not_authorized(@group)
+    @group.destroy
     flash[:notice] = "Group deleted."
     redirect_to groups_path
   end
@@ -54,10 +55,6 @@ class GroupsController < ApplicationController
     def group_params
       params.require(:group).permit(:name)
     end
-
-  def redirect_if_not_authorized
-    redirect_to root_path unless @group.users.include? current_user
-  end
 
   def find_group
     @group = Group.find_by_id(params[:id])

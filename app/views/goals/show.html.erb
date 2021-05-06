@@ -4,4 +4,7 @@
 
 <%= button_to 'Edit', edit_vacation_goal_path(@goal.vacation, @goal), method: "get" %>
 <br>
+<%= button_to 'Delete', vacation_goal_path(@goal.vacation, @goal), method: "delete" %>
+
+<br>
 <%= button_to 'Back to Goals', vacation_goals_path(@goal.vacation), method: "get" %>

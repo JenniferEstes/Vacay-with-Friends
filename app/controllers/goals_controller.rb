@@ -2,15 +2,15 @@ class GoalsController < ApplicationController
 #
     def index
         redirect_if_not_logged_in
-        if params[:vacation_id] && @vacation = Vacation.find_by_id(params[:vacation_id])
-            redirect_if_not_authorized(vacation)
+        if @vacation = Vacation.find_by_id(params[:vacation_id])
+            redirect_if_not_authorized(@vacation.group)
             @goals = @vacation.goals
         end
     end
 
     def new
         redirect_if_not_logged_in
-        if params[:vacation_id] && @vacation = Vacation.find_by_id(params[:vacation_id])
+        if @vacation = Vacation.find_by_id(params[:vacation_id])
             @goal = Goal.new
         else
             flash[:notice] = "Goal doesn't exist!"
@@ -19,7 +19,7 @@ class GoalsController < ApplicationController
     end
 
     def create
-        if params[:vacation_id] && @vacation = Vacation.find_by_id(params[:vacation_id])
+        if @vacation = Vacation.find_by_id(params[:vacation_id])
             @goal = @vacation.goals.build(goal_params)
             @goal.user = current_user
             if @goal.save
@@ -34,18 +34,21 @@ class GoalsController < ApplicationController
     def show
         redirect_if_not_logged_in
         find_goal
-        redirect_if_not_authorized(vacation)
+        redirect_if_not_authorized(@goal.vacation.group)
     end
 
     def edit
+        redirect_if_not_logged_in
         find_goal
-        redirect_if_not_authorized(vacation)
+        redirect_if_not_authorized(@goal.vacation.group)
     end
 
     def update
         redirect_if_not_logged_in
         find_goal
-        redirect_to root_path unless @goal.user == current_user
+        #makes sure goal belongs to specific user
+        # redirect_to root_path unless @goal.user == current_user
+        redirect_if_not_authorized(@goal.vacation.group)
         if @goal.update(goal_params)
             redirect_to vacation_goals_path(@goal.vacation)
         else
@@ -56,19 +59,17 @@ class GoalsController < ApplicationController
 
     def destroy
         redirect_if_not_logged_in
-        redirect_if_not_authorized(vacation)
+        find_goal
+        v = @goal.vacation
+        redirect_if_not_authorized(v.group)
         @goal.destroy
         flash[:notice] = "Goal deleted."
-        redirect_to goals_path
+        redirect_to vacation_goals_path(v)
     end
 
     private
     def goal_params
         params.require(:goal).permit(:amount, :vacation_id, :user_id)
-    end
-
-    def redirect_if_not_authorized(vacation)
-        redirect_to root_path unless @vacation.group.users.include? current_user
     end
 
     def find_goal

@@ -25,7 +25,6 @@ class GoalsController < ApplicationController
             if @goal.save
                 redirect_to vacation_goal_path(@vacation, @goal)
             else
-                flash[:notice] = "Sorry, try again."
                 render :new
             end
         end
@@ -52,7 +51,6 @@ class GoalsController < ApplicationController
         if @goal.update(goal_params)
             redirect_to vacation_goals_path(@goal.vacation)
         else
-            flash[:alert] = "Your goal must be a number."
             render :edit
         end
     end
@@ -63,7 +61,7 @@ class GoalsController < ApplicationController
         v = @goal.vacation
         redirect_if_not_authorized(v.group)
         @goal.destroy
-        flash[:notice] = "Goal deleted."
+        flash[:notice] = "Your goal has been deleted."
         redirect_to vacation_goals_path(v)
     end
 

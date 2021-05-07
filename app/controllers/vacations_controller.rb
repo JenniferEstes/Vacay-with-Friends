@@ -26,11 +26,11 @@ class VacationsController < ApplicationController
             if @vacation.save
                 redirect_to group_vacation_path(@group, @vacation)
             else
-                flash[:notice] = "Sorry, try again."
+                flash[:notice] = "Date was not entered in a format we recognize. Please re-enter the date in format of DD/MM/YYYY or YYYY/MM/DD."
                 render :new
             end
         else
-            flash[:notice] = "That group doesn't exist!"
+            flash[:notice] = "Your group doesn't exist."
             redirect_to groups_path
         end
     end
@@ -54,7 +54,7 @@ class VacationsController < ApplicationController
         if @vacation.update(vacation_params)
             redirect_to group_vacations_path(@vacation.group)
         else
-            flash[:alert] = "You typed something incorrectly. Please try again."
+            flash[:alert] = "We could not process your edit because the date was entered in a format we do not recognize. Please re-enter the date in format of DD/MM/YYYY or YYYY/MM/DD."
             render :edit
         end
     end

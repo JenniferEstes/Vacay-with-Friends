@@ -47,7 +47,7 @@ class GroupsController < ApplicationController
     find_group
     redirect_if_not_authorized(@group)
     @group.destroy
-    flash[:notice] = "Group deleted."
+    flash[:notice] = "Group has been deleted."
     redirect_to groups_path
   end
 

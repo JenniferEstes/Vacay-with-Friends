@@ -14,7 +14,7 @@ class UsersController < ApplicationController
             session[:user_id] = @user.id
             redirect_to user_path(@user)
         else
-            flash[:alert] = "It looks like you entered incorrect infomration. Please try again."
+            flash[:alert] = "One or more fields has letters or characters that were not expected. Please ensure you are only entering details we are asking for."
             render :new 
         end
     end
